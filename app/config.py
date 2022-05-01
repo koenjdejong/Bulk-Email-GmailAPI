@@ -1,6 +1,7 @@
 import os
 from json import load
 from json import JSONDecodeError
+from re import search
 
 
 class ConfigError(Exception):
@@ -23,8 +24,8 @@ class Config:
 
         if not self.__valid_file():
             raise ConfigError("Config file does not exist or is not readable")
-
-        self.__valid_config_data(self.__load_config())
+        self.config_data = self.__load_config()
+        self.__valid_config_data()
 
     def __valid_file(self) -> bool:
         """ Checks if the config file exists and is readable """
@@ -37,5 +38,23 @@ class Config:
         except JSONDecodeError:
             raise ConfigError("Config file is not valid JSON")
 
-    def __valid_config_data(self, data: dict) -> bool:
+    def __valid_config_data(self) -> bool:
         """ Checks if the config file contains the required data """
+        _data = self.config_data
+
+        requirements = ["sender_email", "recipients"]
+        for requirement in requirements:
+            if requirement not in _data:
+                raise ConfigError(f"Config file does not contain {requirement}")
+
+        if not isinstance(_data["sender_email"], str) \
+                and not search("^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$", _data["sender_email"]):
+            raise ConfigError("Sender email must be a string")
+
+        return True
+
+    def __setitem__(self, key, value):
+        raise ConfigError("Config object is read-only")
+
+    def __getitem__(self, item):
+        return self.config_data[item]
