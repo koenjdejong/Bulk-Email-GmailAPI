@@ -1,3 +1,8 @@
+.idea
+
+
+# -- Gitkraken Python GitIgnore --
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -98,12 +103,9 @@ celerybeat-schedule
 
 # Environments
 .env
-.venv
 env/
-venv/
 ENV/
 env.bak/
-venv.bak/
 
 # Spyder project settings
 .spyderproject
