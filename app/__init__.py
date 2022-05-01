@@ -1,6 +1,7 @@
 import logging
 from datetime import datetime
 import os
+from config import Config
 
 if not (os.path.exists('log') or os.path.isdir('log')):
     os.mkdir('log')
@@ -13,4 +14,5 @@ logging.basicConfig(
 
 
 def start():
+    """ Start the application """
     logging.info("Starting...")
