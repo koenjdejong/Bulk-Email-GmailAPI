@@ -1,5 +1,7 @@
 .idea
-
+config.json
+token.pickle
+.DS_Store
 
 # -- Gitkraken Python GitIgnore --
 

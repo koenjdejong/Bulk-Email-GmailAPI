@@ -1,4 +1,5 @@
 from app import start
 
 if __name__ == '__main__':
-    runnable.run()
+    """ Entry point for the application. """
+    start()
