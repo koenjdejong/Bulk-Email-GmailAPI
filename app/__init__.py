@@ -6,7 +6,6 @@ from config import Config
 if not (os.path.exists('log') or os.path.isdir('log')):
     os.mkdir('log')
 
-
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -14,6 +13,7 @@ logging.basicConfig(
 
 config = Config("config.json")
 logging.info(f"Config loaded.")
+
 
 def start():
     """ Start the application """
