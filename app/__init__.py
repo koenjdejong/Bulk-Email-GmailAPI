@@ -12,6 +12,8 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[logging.FileHandler(f"log/LOG_{str(datetime.now()).replace(' ', '_')}.log"), logging.StreamHandler()])
 
+config = Config("config.json")
+logging.info(f"Config loaded.")
 
 def start():
     """ Start the application """
