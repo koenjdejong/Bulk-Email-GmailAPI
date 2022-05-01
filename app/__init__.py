@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime
 import os
-from config import Config
+from app.config import Config
 
 if not (os.path.exists('log') or os.path.isdir('log')):
     os.mkdir('log')
@@ -18,3 +18,4 @@ logging.info(f"Config loaded.")
 def start():
     """ Start the application """
     logging.info("Starting...")
+    from app.mail import send_message
