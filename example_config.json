@@ -1,0 +1,22 @@
+{
+  "scopes": ["https://mail.google.com/"],
+  "api_credentials_file": "credentials.json",
+  "test": true,
+  "test_email_recipient": "recipient@domain.com",
+  "sender_email": "noreply@domain.com",
+  "recipients": ["all_recipients"],
+  "subject": "Gmail_Bulk_TEST",
+  "template_file": "body.html"
+}
+
+# ---- Remove everything below and including this line! -------------------------------------------------------------- #
+Read below for the description of the configuration file:
+
+- The scope can be changed if Google ever changes its scope for Gsuite.
+- The api_credentials_file is the file name that contains the credentials for the Google API.
+- The test is a boolean that determines if the script should send a test email.
+- The test_email_recipient is the email address that the test email should be sent to.
+- The sender_email is the email address that the email should be sent from.
+- The recipients is a list of email addresses that the email should be sent to.
+- The subject is the subject of the email.
+- The template_file is the file name that contains the body of the email.
