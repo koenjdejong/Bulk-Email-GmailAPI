@@ -34,3 +34,4 @@ With a working configuration, you can run the tool with the following command:
 
 ## Requirements
 * [Python 3](https://www.python.org/downloads/)
+* [pip3](https://pypi.org/project/pip/)
