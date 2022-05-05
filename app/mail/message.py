@@ -1,6 +1,5 @@
 import os
-from base64 import urlsafe_b64decode, urlsafe_b64encode
-# for dealing with attachement MIME types
+from base64 import urlsafe_b64encode
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
