@@ -7,6 +7,8 @@ ___
 This is a simple GmailAPI bulk email sender. 
 In short, it uses the GmailAPI to send emails to multiple recipients.
 
+Edit the body.html file for the email. Any other files that are in the templates folder will be sent as attachments!
+
 ## Usage
 
 ### Google API Credentials
