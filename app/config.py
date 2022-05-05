@@ -42,10 +42,11 @@ class Config:
         """ Checks if the config file contains the required data """
         _data = self.config_data
 
-        requirements = ["sender_email", "recipients"]
+        requirements = ["sender_email", "recipients", "scopes", "api_credentials_file", "subject", "test",
+                        "template_file"]
         for requirement in requirements:
             if requirement not in _data:
-                raise ConfigError(f"Config file does not contain {requirement}")
+                raise ConfigError(f"Config file does not contain top-level-requirement: {requirement}")
 
         if not isinstance(_data["sender_email"], str) \
                 and not search("^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$", _data["sender_email"]):

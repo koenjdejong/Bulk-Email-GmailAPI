@@ -19,26 +19,42 @@ def start():
     """ Start the application """
     logging.info("Starting...")
     from app.mail import send_message
-    attachments = test()
+    body, attachments = test_templates()
     if len(attachments) == 1:
         logging.info("No attachments found.")
     recipients = config["recipients"]
     logging.info(f"Sending email to {len(recipients)} recipients.")
 
-    for recipient in recipients:
-        send_message(recipient, attachments)
+    body = open(body, "r").read()
+    subject = config["subject"]
 
-def test():
+    if config["test"]:
+        logging.info("Sending test email...")
+        send_message(config["test_email_recipient"], subject, body, attachments)
+        logging.info("Test email sent.")
+        return
+
+    for recipient in recipients:
+        send_message(recipient, subject, body, attachments)
+        logging.info(f"Email sent to {recipient}.")
+
+
+def test_templates():
     if not (os.path.exists("templates") and os.path.isdir("templates")):
         os.mkdir("templates")
         logging.info("Created templates directory.")
 
     all_files = []
+    body = None
     for root, dirs, files in os.walk("templates"):
         for file in files:
-            all_files.append(f"{root}/{file}")
+            if file == config["template_file"]:
+                body = f"{root}/{file}"
+            else:
+                all_files.append(f"{root}/{file}")
 
-    if len(all_files) == 0 or f"templates/{config['template_file']}" not in all_files:
+    if not body:
+        logging.error(f"Template {config['template']} not found.")
         logging.info("Creating template...")
         with open(f"templates/{config['template_file']}", "w"):
             raise ConfigError("No template found. An empty template file has been created for you")
@@ -47,4 +63,4 @@ def test():
         logging.info("Duplicate template files found.")
         raise ConfigError("Duplicate template files found.")
 
-    return all_files
+    return body, all_files
