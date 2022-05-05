@@ -2,6 +2,7 @@
 config.json
 token.pickle
 .DS_Store
+credentials.json
 
 # -- Gitkraken Python GitIgnore --
 
